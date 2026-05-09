@@ -262,11 +262,14 @@ So, you need to buy 3 packs of apples and 3 packs of oranges to have exactly tho
 ---
 
 **5. Prompt:**  
-Rewrite the following paragraph in a professional, formal tone…  
-**Aspect Tested:**  <!-- Write your answer here -->
+Rewrite the following paragraph in a professional, formal tone:
+
+omg so like the client meeting got moved AGAIN which is whatever but also not bc now im double booked w the dentist lol. anyway i told sarah id cover her shift if she sends me the notes but she has NOT sent them yet and im kinda spiraling ngl. if someone doesnt ping her in the group chat by EOD im just gonna wing it and honestly that might be fine?? idk. dont @ me
+
+**Aspect Tested:** Style rewriting—shifting informal / colloquial prose to a professional, formal register while preserving meaning.
 
 **Response:**  
-<!-- Add your app's response here -->
+The client meeting has been rescheduled once more, which is somewhat inconvenient as I am now double-booked with a dental appointment. I informed Sarah that I would cover her shift on the condition that she provides me with the necessary notes; however, I have yet to receive them. If no one reminds her in the group chat by the end of the day, I will proceed without the notes, which may still be manageable.
 
 ---
 
