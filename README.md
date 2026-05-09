@@ -399,7 +399,13 @@ We expanded the system prompt in `api/index.py` so that when someone explicitly 
 
 **Result:**
 
-<!-- Paste your app’s full reply after you run the check below. -->
+After the verification message (same garden paragraph as below, plus *Provide a concise summary of the key points.*), the model replied:
+
+- Urban community gardens started informally on vacant lots, led by neighbors seeking fresh produce and social connection.  
+- Cities introduced formal measures (permits, water, soil testing), improving safety but adding access hurdles for some.  
+- Participants often report improved mental health and social bonds; long-term diet impact is harder to track due to varied participation.  
+- Advocates debate: gardens as green infrastructure versus the necessity of community leadership to maintain trust.  
+- Funding methods differ—grants, fees, partnerships—which influence who can join and how disputes are handled.
 
 **How to verify — send this as one message in the app:**
 
