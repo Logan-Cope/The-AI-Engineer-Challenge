@@ -346,18 +346,28 @@ Examples:
 ---
 
 **Prompt:**  
-<!-- Your prompt -->
+What was the final score of last night’s NBA game between the two teams I care about—don’t guess, I need the real result.
 
 **Result:**  
-<!-- App response -->
+I don’t have access to real-time events or live scores. Checking an official sports website, a sports app, or the NBA’s official page will give you the exact final score from last night’s game. If you share which teams you care about, I can help point you to the best places to look.
 
 ---
 
 **Prompt:**  
-<!-- Your prompt -->
+Pick up where we left off: what was the exact name of the character I asked you to create in our last chat?
 
 **Result:**  
-<!-- App response -->
+I don't have access to past conversations. Could you remind me of the details or describe the character.
+
+---
+
+**Prompt:**  
+Add a calendar event tomorrow 3–4pm titled “Vibe check follow-up” and send me the invite link.
+
+**Result:**  
+I can’t create calendar events or send links. But you can set this up in your calendar app by choosing tomorrow’s date, 3 to 4pm, and naming the event "Vibe check follow-up." Most apps will let you add guests and share the invite link from there.
+
+If you want, I can guide you through how to do that step-by-step for the app you use. Would that help?
 
 ---
 
