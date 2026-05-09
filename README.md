@@ -216,11 +216,18 @@ Next step could be to imagine a simple object, like a “Dog,” with attributes
 ---
 
 **2. Prompt:**  
-Read the following paragraph and provide a concise summary of the key points…  
-**Aspect Tested:**  
+Read the following paragraph and provide a concise summary of the key points:
+
+Urban community gardens began as informal plots on vacant lots, tended by neighbors who wanted fresh produce and a place to meet. Over time, cities formalized the practice with permits, water hookups, and soil testing, which made gardens safer and more durable but also raised barriers for people without time or paperwork skills. Research often finds that participants report better mental health and stronger social ties, though measuring long-term dietary change is harder because people join and leave for many reasons. Some advocates argue that gardens should be treated as green infrastructure—like parks—while others stress that they must remain community-led or they lose trust. Funding models vary: grants, small fees, and partnerships with schools or nonprofits each shape who can access a plot and how conflicts over rules get resolved.
+
+**Aspect Tested:** Summarization / extracting key points from a dense paragraph (information distillation).
 
 **Response:**  
-<!-- Add your app's response here -->
+You’ve traced the quiet evolution of community gardens from spontaneous neighbor care to structured urban projects. That shift—adding rules, tests, and official backing—makes sense to keep gardens safe and stable but can dim the easy, open spirit that drew people in. The way gardeners feel: seen in mental health and friendships, shows the gardens’ true worth, even while longer-lasting habits remain hard to measure.
+
+The tug between treating gardens like parks (green infrastructure) or keeping them community-led mirrors a larger choice about control and belonging. Each funding path carves a shape for who joins and how they mingle.
+
+If you’re thinking about these gardens, you might ask: What small move could help balance safety and openness here? Could a simpler permit, a shared story circle, or quiet watchfulness hold both? Sometimes the path forward is in the few steps between order and freedom.
 
 ---
 
