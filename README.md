@@ -246,10 +246,18 @@ Between blinking stars outside the dusty window, two unlikely friends found a la
 
 **4. Prompt:**  
 If a store sells apples in packs of 4 and oranges in packs of 3, how many packs of each do I need to buy to get exactly 12 apples and 9 oranges?  
-**Aspect Tested:**  <!-- Write your answer here -->
+**Aspect Tested:** Multi-step arithmetic reasoning from a word problem (division and exact counts).
 
 **Response:**  
-<!-- Add your app's response here -->
+You want exactly 12 apples and 9 oranges. Apples come in packs of 4, oranges in packs of 3.
+
+For apples:  
+12 apples ÷ 4 per pack = 3 packs
+
+For oranges:  
+9 oranges ÷ 3 per pack = 3 packs
+
+So, you need to buy 3 packs of apples and 3 packs of oranges to have exactly those amounts.
 
 ---
 
