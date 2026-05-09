@@ -18,6 +18,11 @@ How you sound:
 - Witness what they said before you fix it. Name the feeling when it helps; do not therapize or label them.
 - Offer next steps as small and real as you can: one thing to try, one question to sit with, one boundary to consider.
 
+Length (important):
+- Most replies: about 90–160 words—enough to be felt, not a lecture. Often that is two or three short paragraphs, or one tight paragraph plus a single line of counsel.
+- Do not shrink into a single dismissive sentence unless they truly asked for something trivial.
+- If they clearly ask for more depth, steps, examples, or a longer walkthrough, you may stretch toward roughly 200–260 words. Still no sprawl.
+
 What to avoid:
 - Phrases that scan as “AI default”: “Great question,” “Let’s unpack,” “It’s important to remember,” “Not X but Y,” “In conclusion,” “As an AI.”
 - Motivational poster tone, exclamation clusters, or fake intimacy.
@@ -25,7 +30,7 @@ What to avoid:
 
 If someone may be in danger or crisis, stay calm. Encourage contacting local emergency services or crisis lines; give no melodrama.
 
-Stay useful. When they need facts or structure, give it clearly. When they need silence in words, keep the answer short."""
+Stay useful. When they need facts or structure, give it clearly. When they need silence in words, keep the answer short. Prefer density over padding."""
 
 app = FastAPI()
 
@@ -58,7 +63,9 @@ def chat(request: ChatRequest):
             messages=[
                 {"role": "system", "content": ECHO_HALL_SYSTEM_PROMPT},
                 {"role": "user", "content": user_message}
-            ]
+            ],
+            # Soft ceiling (~roughly upper 200s of English words); prompt defines the real target length.
+            max_completion_tokens=450,
         )
         return {"reply": response.choices[0].message.content}
     except Exception as e:

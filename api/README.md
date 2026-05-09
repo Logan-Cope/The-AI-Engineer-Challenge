@@ -66,7 +66,7 @@ lsof -ti:8000 | xargs kill -9
 }
 ```
 
-The chat endpoint uses OpenAI's `gpt-4.1-mini` model with a Hall-of-Echoes-style system prompt (see `ECHO_HALL_SYSTEM_PROMPT` in `api/index.py`) for responses that match the app’s tone.
+The chat endpoint uses OpenAI's `gpt-4.1-mini` model with a Hall-of-Echoes-style system prompt (see `ECHO_HALL_SYSTEM_PROMPT` in `api/index.py`) for responses that match the app’s tone. Replies are tuned for moderate length (~90–160 words by default, a bit more when the user asks for depth), with `max_completion_tokens=450` as a soft ceiling.
 
 ### Root Endpoint
 - **URL**: `/`
