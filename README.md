@@ -87,7 +87,7 @@ Got everything in place? Let's move on!
   <summary>⚙️ Backend Setup with uv</summary>
 
 1. Install the [`uv`](https://github.com/astral-sh/uv) package manager (`pip install uv`). `uv` will download and manage Python 3.12 for you the first time you run a project command.
-2. From the project root, install dependencies with `uv sync`. This creates `.venv/` (and fetches Python 3.12 automatically if needed).
+2. From the project root, install dependencies with `uv sync`. This creates `.venv/` (and fetches Python 3.12 automatically if needed). For the tutorial notebook, use `uv sync --extra notebook`.
 3. Set your OpenAI API key in the shell before running the server, for example `export OPENAI_API_KEY=sk-...`.
 4. Start the backend directly from the project root with `uv run uvicorn api.index:app --reload`. The server will run on `http://localhost:8000` with auto-reload enabled for development.
 5. Additional backend details live in `api/README.md`.
@@ -141,25 +141,29 @@ While it is a bit counter-intuitive to set things up before jumping into vibe-co
 
 1. Ensure you have signed into [Vercel](https://vercel.com/) with your GitHub account.
 
-2. Ensure you have `npm` (this may have been installed in the previous vibe-coding step!) - if you need help with that, ask Cursor!
+2. **Project root:** Import this repo and set **Root Directory** to the repository root (leave blank / `.`), **not** `frontend/`, so `vercel.json` can run **Next.js** (`frontend/`) and **FastAPI** (`api/index.py`) in one deployment via `experimentalServices`.
 
-3. Run the command:
+3. In the Vercel project **Environment Variables**, set **`OPENAI_API_KEY`**. You normally **do not** need `NEXT_PUBLIC_API_BASE_URL` — the UI calls **`/api/chat`** on the same domain.
+
+4. Ensure you have `npm` (this may have been installed in the previous vibe-coding step!) - if you need help with that, ask Cursor!
+
+5. Run the command:
 
      ```bash
      npm install -g vercel
      ```
 
-4. Run the command:
+6. Run the command from the **repository root**:
 
      ```bash
      vercel
      ```
 
-5. Follow the in-terminal instructions. (Below is an example of what you will see!)
+7. Follow the in-terminal instructions. (Below is an example of what you will see!)
 
      ![image](https://i.imgur.com/D1iKGCq.png)
 
-6. Once the build is completed - head to the provided link and try out your app!
+8. Once the build is completed - head to the provided link and try out your app!
 
 > NOTE: Remember, if you run into any errors - ask Cursor to help you fix them!
 

@@ -3,13 +3,17 @@
 import { useCallback, useRef, useState } from "react";
 import type { KeyboardEvent, SVGAttributes } from "react";
 
-/** API base URL: FastAPI default is http://localhost:8000 */
+/**
+ * Chat API origin.
+ * - Production (Vercel): omit `NEXT_PUBLIC_API_BASE_URL` → same-origin `/api/chat`.
+ * - Custom API host: set `NEXT_PUBLIC_API_BASE_URL` (no trailing slash).
+ * - Local `next dev`: omit env → same-origin `/api/...` (rewritten to uvicorn :8000 in next.config).
+ */
 function getApiBase(): string {
-  const fromEnv =
-    typeof process.env.NEXT_PUBLIC_API_BASE_URL === "string"
-      ? process.env.NEXT_PUBLIC_API_BASE_URL.trim().replace(/\/$/, "")
-      : "";
-  return fromEnv.length > 0 ? fromEnv : "http://localhost:8000";
+  const raw = process.env.NEXT_PUBLIC_API_BASE_URL;
+  if (typeof raw !== "string") return "";
+  const trimmed = raw.trim().replace(/\/$/, "");
+  return trimmed;
 }
 
 type Msg = {
@@ -40,7 +44,8 @@ export default function EchoHall() {
 
     try {
       const base = getApiBase();
-      const res = await fetch(`${base}/api/chat`, {
+      const url = base ? `${base}/api/chat` : "/api/chat";
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message }),

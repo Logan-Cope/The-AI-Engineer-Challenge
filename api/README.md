@@ -2,6 +2,8 @@
 
 This is a FastAPI-based backend service that provides a chat interface using OpenAI's API. The system prompt shapes a spare, contemplative voice aligned with the frontend’s “Hall of Gentle Echoes” mood—grounded help without generic coach-speak.
 
+**Vercel:** The app is mounted under the `/api` prefix. Handlers are registered on both `/chat` and `/api/chat` (and `/health` / `/api/health`) so the same code works locally with uvicorn and on Vercel Services.
+
 ## Prerequisites
 
 - [`uv`](https://github.com/astral-sh/uv) package manager (`pip install uv`)

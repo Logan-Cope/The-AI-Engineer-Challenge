@@ -6,7 +6,7 @@ Next.js UI for **The AI Engineer Challenge**: a moody, “forgotten-kingdom” a
 
 - **Node.js** 18+ recommended (20+ preferred for Next.js 15)
 - **npm** (or swap commands for `pnpm` / `yarn`)
-- Backend running separately — see repo root README (`uv run uvicorn api.index:app --reload`)
+- For local full-stack: FastAPI on port 8000 — see repo root README
 
 ## Run locally
 
@@ -14,7 +14,6 @@ From this `frontend/` directory:
 
 ```bash
 npm install
-cp .env.example .env.local   # optional: edit if API is not on localhost:8000
 npm run dev
 ```
 
@@ -23,15 +22,16 @@ Open [http://localhost:3000](http://localhost:3000).
 1. Terminal A (repo root): `export OPENAI_API_KEY=sk-...` then `uv run uvicorn api.index:app --reload`
 2. Terminal B (`frontend/`): `npm run dev`
 
-## Configure API URL
+`next.config.ts` rewrites `/api/*` → `http://127.0.0.1:8000/api/*` when **not** on Vercel, so the UI can call relative `/api/chat` without setting `NEXT_PUBLIC_API_BASE_URL`.
 
-- **Local:** Default is `http://localhost:8000`. Override with `.env.local`:
+## Configure API URL (optional)
+
+- **Default:** Same-origin `/api/chat` (works on Vercel and local dev with rewrites).
+- **Custom backend host:** set in `.env.local`:
 
   ```bash
-  NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
+  NEXT_PUBLIC_API_BASE_URL=https://your-api.example.com
   ```
-
-- **Production (Vercel):** Add the same env var pointing at your deployed FastAPI URL (no trailing slash).
 
 ## Build
 
@@ -40,11 +40,12 @@ npm run build
 npm start
 ```
 
-## Deploy on Vercel
+## Deploy on Vercel (unified with FastAPI)
 
-1. Push the repo and import it in Vercel.
-2. Set **Root Directory** to `frontend`.
-3. Set `NEXT_PUBLIC_API_BASE_URL` to your API’s public origin.
-4. Deploy.
+Deploy from the **repository root** (leave **Root Directory** empty / `.` in the Vercel project so repo-root `vercel.json` applies).
 
-> The repo-root `vercel.json` sends all routes to the Python handler. If you deploy **only** this Next app by setting Root Directory to `frontend`, Vercel uses Next’s defaults for that subdirectory—align with however you host the FastAPI backend (separate deployment is common).
+1. Set **`OPENAI_API_KEY`** in the Vercel project (required for chat).
+2. You usually **do not** need `NEXT_PUBLIC_API_BASE_URL` — the app calls `/api/chat` on the same deployment.
+3. The platform uses **`experimentalServices`** in `vercel.json`: Next.js serves `/`, Python FastAPI serves `/api/*`.
+
+If your team uses an older Vercel setup without Services, upgrade the project or ask Vercel support — polyglot deploys need this (or an equivalent) configuration.

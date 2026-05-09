@@ -6,10 +6,12 @@ readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "fastapi>=0.115.12",
-    "jupyter>=1.1.1",
     "openai",
     "pydantic>=2.11.4",
     "uvicorn>=0.34.2",
     "python-multipart>=0.0.18",
     "python-dotenv>=1.2.2",
 ]
+
+[project.optional-dependencies]
+notebook = ["jupyter>=1.1.1"]

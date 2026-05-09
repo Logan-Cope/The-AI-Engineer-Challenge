@@ -1,4 +1,7 @@
-fastapi>=0.121.2
-uvicorn>=0.38.0
+# Vercel Python bundle: keep lean (no notebook stack). Local `uv sync` uses pyproject.toml.
+fastapi>=0.115.12
+uvicorn>=0.34.2
 openai>=1.0.0
-python-dotenv>=1.0.0
+python-dotenv>=1.2.2
+pydantic>=2.11.4
+python-multipart>=0.0.18

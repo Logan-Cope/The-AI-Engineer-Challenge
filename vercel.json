@@ -1,7 +1,13 @@
 {
-  "version": 2,
-  "routes": [
-    { "src": "/(.*)", "dest": "/api/index.py" }
-  ]
+  "experimentalServices": {
+    "web": {
+      "entrypoint": "frontend",
+      "framework": "nextjs",
+      "routePrefix": "/"
+    },
+    "api": {
+      "entrypoint": "api/index.py",
+      "routePrefix": "/api"
+    }
+  }
 }
-
