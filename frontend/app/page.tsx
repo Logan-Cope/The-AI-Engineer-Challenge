@@ -1,4 +1,4 @@
-import ShrineChat from "@/components/ShrineChat";
+import EchoHall from "@/components/EchoHall";
 
 /** Drifting luminance specs — deterministic positions for SSR / hydration parity */
 const SPORES = Array.from({ length: 26 }, (_, i) => ({
@@ -29,19 +29,18 @@ export default function Home() {
         <p className="eyebrow">Beneath the surface of thought</p>
         <h1 className="title">Hall of Gentle Echoes</h1>
         <p className="subtitle">
-          Some burdens are borne in silence—not because they deserve darkness, but because the world seldom
-          offers a shrine.
+          Some burdens stay quiet. The world rarely makes room for them. Here you can speak without having to
+          explain.
         </p>
         <p className="lore">
-          This place does not resemble any kingdom you have played through. It echoes one feeling only:
-          reverence for the courage it takes to be soft with yourself—like a moth turning toward warmth in
-          halls that forgot their name.
+          No borrowed kingdom. No borrowed story. Only the thin courage of being kind to yourself in the
+          dark—moths toward a small warmth, in corridors whose names wore away ages ago.
         </p>
 
-        <ShrineChat />
+        <EchoHall />
 
         <p className="footer-whisper">
-          You are not diminished for needing a voice that holds you steady.
+          The hall keeps no ledger of who needed soft ground.
         </p>
       </main>
     </div>

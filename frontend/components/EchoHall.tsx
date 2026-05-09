@@ -17,7 +17,7 @@ type Msg = {
   text: string;
 };
 
-export default function ShrineChat() {
+export default function EchoHall() {
   const [messages, setMessages] = useState<Msg[]>([]);
   const [draft, setDraft] = useState("");
   const [loading, setLoading] = useState(false);
@@ -69,7 +69,7 @@ export default function ShrineChat() {
       const msg =
         e instanceof Error
           ? e.message
-          : "No answer returned. Is the shrine listening? Check OPENAI_API_KEY and that the backend runs at "
+          : "Nothing returned from the deep. Check OPENAI_API_KEY and that the backend runs at "
             + `${getApiBase()}.`;
       setError(msg);
     } finally {
@@ -85,19 +85,19 @@ export default function ShrineChat() {
   };
 
   return (
-    <div className="shrine-wrap">
-      <div className="shrine-frame">
+    <div className="hall-panel-wrap">
+      <div className="hall-panel-frame">
         <span className="corner-accent tl" aria-hidden />
         <span className="corner-accent tr" aria-hidden />
         <span className="corner-accent bl" aria-hidden />
         <span className="corner-accent br" aria-hidden />
 
-        <div className="shrine-header">
+        <div className="hall-panel-header">
           <LanternGlyph className="lantern-glyph" aria-hidden />
           <div>
             <h2>Whispers into the veil</h2>
             <p>
-              Whatever you bury here is held gently—spoken to a mindful guide, not judged.
+              Say it plainly. The voice below reads for what is true, not for polish.
             </p>
           </div>
         </div>
@@ -105,7 +105,7 @@ export default function ShrineChat() {
         <div className="messages" aria-live="polite" aria-busy={loading}>
           {messages.length === 0 ? (
             <p className="lore" style={{ marginBottom: "0", borderLeftColor: "rgba(109, 212, 200, 0.25)" }}>
-              The chapel is empty. Speak a sorrow, a hope, or a stray thought—you need not armor it in
+              The hall is still. A sorrow, a hope, a stray thought—none of it needs to arrive dressed in
               eloquence.
             </p>
           ) : (
@@ -121,9 +121,9 @@ export default function ShrineChat() {
 
         <div className="form-row">
           <div className="input-wrap">
-            <label htmlFor="chapel-input">What lingers?</label>
+            <label htmlFor="echo-hall-input">What lingers?</label>
             <textarea
-              id="chapel-input"
+              id="echo-hall-input"
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               onKeyDown={onKeyDown}
@@ -159,7 +159,7 @@ function LanternGlyph({
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      {/* Abstract lantern emblem — inspired by solitude of light underground, original shapes */}
+      {/* Abstract lantern emblem — solitude of light underground, original shapes */}
       <path
         d="M24 8L18 22h12L24 8z"
         fill="currentColor"

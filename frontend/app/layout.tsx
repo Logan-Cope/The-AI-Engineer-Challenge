@@ -17,7 +17,7 @@ const body = Crimson_Text({
 export const metadata: Metadata = {
   title: "Hall of Gentle Echoes · Linger",
   description:
-    "A quiet place to speak with a compassionate guide—evoking the stillness and weight of forgotten halls.",
+    "Linger in a quiet hall: speak into the veil and hear a spare, kind voice from the deep.",
 };
 
 export default function RootLayout({

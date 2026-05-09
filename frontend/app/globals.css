@@ -165,13 +165,13 @@ body::before {
   max-width: 44ch;
 }
 
-/* --- Shrine / chat --- */
-.shrine-wrap {
+/* --- Chat panel (carved hall frame) --- */
+.hall-panel-wrap {
   position: relative;
 }
 
 /* Ornate layered frame — reads like carved stone lintel */
-.shrine-frame {
+.hall-panel-frame {
   position: relative;
   padding: clamp(1rem, 2.5vw, 1.35rem);
   background: linear-gradient(
@@ -189,7 +189,7 @@ body::before {
     0 0 80px rgba(109, 212, 200, 0.06);
 }
 
-.shrine-frame::before {
+.hall-panel-frame::before {
   content: "";
   position: absolute;
   inset: 6px;
@@ -231,7 +231,7 @@ body::before {
   border-width: 0 2px 2px 0;
 }
 
-.shrine-header {
+.hall-panel-header {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -248,7 +248,7 @@ body::before {
   filter: drop-shadow(0 0 12px var(--teal-glow));
 }
 
-.shrine-header h2 {
+.hall-panel-header h2 {
   font-family: var(--font-display), serif;
   font-size: 1rem;
   font-weight: 600;
@@ -258,7 +258,7 @@ body::before {
   margin: 0;
 }
 
-.shrine-header p {
+.hall-panel-header p {
   margin: 0.15rem 0 0;
   font-size: 0.82rem;
   color: var(--parchment-dim);

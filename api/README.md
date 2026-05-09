@@ -1,6 +1,6 @@
 # OpenAI Chat API Backend
 
-This is a FastAPI-based backend service that provides a chat interface using OpenAI's API. The service acts as a supportive mental coach, helping users with stress, motivation, habits, and confidence.
+This is a FastAPI-based backend service that provides a chat interface using OpenAI's API. The system prompt shapes a spare, contemplative voice aligned with the frontend’s “Hall of Gentle Echoes” mood—grounded help without generic coach-speak.
 
 ## Prerequisites
 
@@ -66,7 +66,7 @@ lsof -ti:8000 | xargs kill -9
 }
 ```
 
-The chat endpoint uses OpenAI's GPT-5 model with a supportive mental coach system prompt to provide helpful responses.
+The chat endpoint uses OpenAI's `gpt-4.1-mini` model with a Hall-of-Echoes-style system prompt (see `ECHO_HALL_SYSTEM_PROMPT` in `api/index.py`) for responses that match the app’s tone.
 
 ### Root Endpoint
 - **URL**: `/`
