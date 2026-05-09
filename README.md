@@ -289,26 +289,37 @@ Now test your app with **real-world prompts that are relevant to your use case**
 ---
 
 **Prompt:**  
-<!-- Your prompt -->
+Write a short in-world fragment: an inscription on a stone lintel above a sealed door in an abandoned hall—no proper nouns from any real game, but it should sound like a warning and an invitation at once. Four to six lines.
 
 **Result:**  
-<!-- App response -->
+Here beneath the earth’s slow sigh,  
+Paths twist where silence dwells.  
+Step with care, for not all sleep  
+In shadow’s hold is rightly still.  
+Still, those who seek and steady night  
+May find the light that time forgot.
 
 ---
 
 **Prompt:**  
-<!-- Your prompt -->
+Create the lore of a character named The Forgotten Knight. Give them a weapon that fits their character, and make sure that this is only one paragraph long and has layers to it. Depth.
 
 **Result:**  
-<!-- App response -->
+The Forgotten Knight once bore a shining crest among kings, but after a betrayal erased their name from all memory, they became a shadow wandering crumbled halls and lost battlefields. Their weapon, a fragmented lance called the Echo’s Whisper, bears scars of a hundred vanished duels: its faded silver still hums faintly with the voices of forgotten oaths, striking not only flesh but the fragile veil between remembrance and oblivion. Each time it pierces armor, it pulls a sliver of lost truth into the light—sometimes healing a wound in history, sometimes opening a wound in the soul. The Knight moves through the world as a quiet reckoning, seeking both to reclaim a shattered past and to make peace with the silence that followed.
 
 ---
 
 **Prompt:**  
-<!-- Your prompt -->
+okay now give a loose map for how this lore of the forgotten knight would connect through the rest of the game. like we want to kind of understand where the game is going but also understand the past of the forgotten knight. how would you connect the pieces together for epic lore but a lot of untold depth as well (make the lore reachable but you have to dig)
 
 **Result:**  
-<!-- App response -->
+Start with the forgotten knight as a quiet ghost at the edge of history—someone who once bore great hope or burden but slowly vanished, leaving behind echoes in ruins, scattered notes, or whispered names in cornered conversations. Their story is a fracture in the world’s shape, half-buried beneath newer myths and faded truths.
+
+Let fragments of the knight’s past surface through puzzles, relics, or visions that players must piece together. Each hint reveals not only who they were but also threads tying them to the world’s struggles—forgotten wars, betrayals, or a vow that shaped the current crisis. These echoes might appear in side quests, environmental storytelling, or coded messages needing patience and curiosity.
+
+As players venture deeper, they uncover how the knight’s fate mirrors or contrasts with the world’s path—small acts of sacrifice, moments of doubt, or choices lost to time. This weaving of past and present brings the world to life without overwhelming the main story, rewarding those who seek the shadows behind the light.
+
+Try to leave gaps, too—questions unanswered, stories only half-remembered. That silence invites players to wonder, debate, and imagine beyond what the game lays bare, making the lore a living thing beneath the surface.
 
 ---
 
