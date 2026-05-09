@@ -202,10 +202,16 @@ For each prompt Identify what capability is being tested (e.g., *summarization a
 
 **1. Prompt:**  
 Explain the concept of object-oriented programming in simple terms to a complete beginner.  
-**Aspect Tested:**  <!-- Write your answer here -->
+**Aspect Tested:** Teaching / simplifying a technical concept for a non-expert audience.
 
 **Response:**  
-<!-- Add your app's response here -->
+Imagine you’re building with blocks, but instead of loose pieces, each block is a little toy with its own shape, color, and special actions it can do. Object-oriented programming (OOP) is like that—it organizes code into “objects.” 
+
+Each object represents a thing, like a car, a person, or a bank account. The object holds information about itself (its attributes, like color or balance) and knows how to do things (methods, like drive or deposit). This helps keep the code tidy and easy to understand because related data and behavior live together.
+
+Think of an object like a small, self-contained world. When you need to represent a real-world thing in your program, you create an object from a blueprint called a “class.” That’s a plan describing what objects of that type know and can do.
+
+Next step could be to imagine a simple object, like a “Dog,” with attributes (name, breed) and actions (bark, sit). What might your Dog object do?
 
 ---
 
