@@ -391,11 +391,45 @@ Then rerun your vibe check and document:
 
 ---
 
-**Adjustments Made:**  
-**(A) System prompt (`ECHO_HALL_SYSTEM_PROMPT` in `api/index.py`):** When the user clearly asks for a summary / key points / TL;DR, the model is instructed to use **markdown bullets**, stay roughly **under 120 words**, avoid reflective “you’ve traced…” openers, and skip coaching pivots unless asked. **(C) Session context:** `POST /api/chat` accepts optional **`session_context`**. The Next UI (`frontend/components/EchoHall.tsx`) adds a collapsible **Pinned context (this device only)** field plus **`localStorage`** persistence for the thread (last 40 turns) and the pin; messages survive refresh on the same browser. **Clear conversation** wipes the stored thread (not the pin).
+**Adjustments Made:**
 
-**Results:**  
-**Summary-style asks:** Re-run the Activity #1 garden paragraph with “provide a concise summary of the key points”—replies should skew **bullet-first and plain** instead of reflective essay tone (spot-check locally after deploy). **Memory gap:** With lore pinned (e.g. Forgotten Knight + weapon), follow-up questions in the **same browser** should **pick up names** the model no longer has to guess; it is **not** server-side or cross-device. **Unchanged:** live scores, calendar actions, and authenticated APIs still out of scope.
+**1. Tighter behavior when people ask for summaries**
+
+We expanded the system prompt in `api/index.py` so that when someone explicitly asks for a summary, key points, or a TL;DR, the model is steered toward short bullet lists, plain language, and away from long reflective “essay” answers.
+
+**Result:**
+
+<!-- Paste your app’s full reply after you run the check below. -->
+
+**How to verify — send this as one message in the app:**
+
+```
+Urban community gardens began as informal plots on vacant lots, tended by neighbors who wanted fresh produce and a place to meet. Over time, cities formalized the practice with permits, water hookups, and soil testing, which made gardens safer and more durable but also raised barriers for people without time or paperwork skills. Research often finds that participants report better mental health and stronger social ties, though measuring long-term dietary change is harder because people join and leave for many reasons. Some advocates argue that gardens should be treated as green infrastructure—like parks—while others stress that they must remain community-led or they lose trust. Funding models vary: grants, small fees, and partnerships with schools or nonprofits each shape who can access a plot and how conflicts over rules get resolved.
+
+Provide a concise summary of the key points.
+```
+
+---
+
+**2. Pinned background text and conversation memory on this device**
+
+The chat API accepts optional `session_context` on each request. The UI adds a collapsible **Pinned context (this device only)** field and stores recent turns in the browser so a refresh on the same machine does not wipe the thread. **Clear conversation** clears the stored transcript; it does not remove the pin unless you delete that text yourself.
+
+**Result:**
+
+<!-- Paste your app’s full reply after you run the check below. -->
+
+**How to verify**
+
+1. Open **Pinned context (this device only)** and paste the **Forgotten Knight** paragraph from Activity #2 (the lore that names **Echo’s Whisper**). Click outside the field so it saves.  
+2. Optional: click **Clear conversation** so only the pin supplies background (no older chat turns).  
+3. Send this as your **next** message (exactly):
+
+```
+In one sentence: what is the knight's weapon called?
+```
+
+4. Paste the model’s answer under **Result** for item **2** above.
 
 ---
 
