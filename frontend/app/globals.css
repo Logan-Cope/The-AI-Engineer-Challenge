@@ -1,0 +1,447 @@
+/* Hollow Knight–evocative palette: deep cavern, lantern teal, aged gold, warm parchment text.
+   Original styling only—no copyrighted game assets. */
+
+:root {
+  --void: #05040a;
+  --abyss: #0a0814;
+  --depth: #12101f;
+  --stone: #1c1830;
+  --slate: #2a2640;
+  --teal-fire: #6dd4c8;
+  --teal-dim: rgba(109, 212, 200, 0.55);
+  --teal-glow: rgba(109, 212, 200, 0.22);
+  --gold-ember: #d4b464;
+  --gold-faint: rgba(212, 180, 100, 0.35);
+  --parchment: #e8e2d4;
+  --parchment-dim: #b8b0a0;
+  --danger: #c45c6a;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: var(--font-body), Georgia, serif;
+  background: var(--void);
+  color: var(--parchment);
+  line-height: 1.65;
+}
+
+/* Atmospheric grain overlay */
+body::before {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* --- Page shell --- */
+.realm {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: radial-gradient(
+      ellipse 120% 80% at 50% -20%,
+      rgba(45, 38, 75, 0.45) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 90% 60% at 80% 100%,
+      rgba(20, 45, 48, 0.35) 0%,
+      transparent 50%
+    ),
+    linear-gradient(180deg, var(--abyss) 0%, var(--void) 35%, var(--depth) 100%);
+}
+
+.vignette {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: radial-gradient(
+    ellipse 70% 65% at 50% 45%,
+    transparent 0%,
+    transparent 40%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+}
+
+/* Drifting “spores” — abstract, not game art */
+.spores {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.spore {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--teal-dim);
+  box-shadow: 0 0 8px var(--teal-glow);
+  opacity: 0;
+  animation: drift 18s ease-in-out infinite;
+}
+
+@keyframes drift {
+  0% {
+    transform: translateY(100vh) translateX(0);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.7;
+  }
+  92% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-20vh) translateX(25px);
+    opacity: 0;
+  }
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) clamp(1rem, 3vw, 2rem)
+    clamp(3rem, 6vw, 5rem);
+}
+
+/* --- Typography --- */
+.eyebrow {
+  font-family: var(--font-display), serif;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  color: var(--teal-fire);
+  text-shadow: 0 0 24px var(--teal-glow);
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-family: var(--font-display), serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 5.5vw, 2.85rem);
+  letter-spacing: 0.06em;
+  color: var(--parchment);
+  margin: 0 0 0.5rem;
+  line-height: 1.15;
+}
+
+.subtitle {
+  margin: 0 0 1.75rem;
+  font-size: 1.05rem;
+  color: var(--parchment-dim);
+  font-style: italic;
+  max-width: 38ch;
+}
+
+.lore {
+  font-size: 0.98rem;
+  color: var(--parchment-dim);
+  border-left: 2px solid var(--gold-faint);
+  padding-left: 1.1rem;
+  margin-bottom: 2.25rem;
+  max-width: 44ch;
+}
+
+/* --- Shrine / chat --- */
+.shrine-wrap {
+  position: relative;
+}
+
+/* Ornate layered frame — reads like carved stone lintel */
+.shrine-frame {
+  position: relative;
+  padding: clamp(1rem, 2.5vw, 1.35rem);
+  background: linear-gradient(
+    165deg,
+    rgba(24, 20, 42, 0.92) 0%,
+    rgba(14, 12, 24, 0.96) 100%
+  );
+  border: 1px solid rgba(109, 212, 200, 0.28);
+  border-radius: 2px;
+  box-shadow:
+    inset 0 1px 0 rgba(109, 212, 200, 0.12),
+    inset 0 -20px 50px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(0, 0, 0, 0.5),
+    0 22px 50px rgba(0, 0, 0, 0.55),
+    0 0 80px rgba(109, 212, 200, 0.06);
+}
+
+.shrine-frame::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(212, 180, 100, 0.12);
+  border-radius: 1px;
+  pointer-events: none;
+}
+
+.corner-accent {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: rgba(212, 180, 100, 0.35);
+  border-style: solid;
+  pointer-events: none;
+}
+
+.corner-accent.tl {
+  top: 4px;
+  left: 4px;
+  border-width: 2px 0 0 2px;
+}
+
+.corner-accent.tr {
+  top: 4px;
+  right: 4px;
+  border-width: 2px 2px 0 0;
+}
+
+.corner-accent.bl {
+  bottom: 4px;
+  left: 4px;
+  border-width: 0 0 2px 2px;
+}
+
+.corner-accent.br {
+  bottom: 4px;
+  right: 4px;
+  border-width: 0 2px 2px 0;
+}
+
+.shrine-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid rgba(184, 176, 160, 0.12);
+}
+
+.lantern-glyph {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  color: var(--teal-fire);
+  filter: drop-shadow(0 0 12px var(--teal-glow));
+}
+
+.shrine-header h2 {
+  font-family: var(--font-display), serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold-ember);
+  margin: 0;
+}
+
+.shrine-header p {
+  margin: 0.15rem 0 0;
+  font-size: 0.82rem;
+  color: var(--parchment-dim);
+  font-style: italic;
+}
+
+.messages {
+  max-height: min(420px, 52vh);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.5rem 0.25rem;
+  scroll-behavior: smooth;
+}
+
+.messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.messages::-webkit-scrollbar-thumb {
+  background: rgba(109, 212, 200, 0.25);
+  border-radius: 4px;
+}
+
+.turn {
+  margin-bottom: 1rem;
+}
+
+.turn.you .bubble-label {
+  color: var(--teal-fire);
+}
+
+.turn.echo .bubble-label {
+  color: var(--gold-ember);
+}
+
+.bubble-label {
+  font-family: var(--font-display), serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+.bubble {
+  padding: 0.75rem 1rem;
+  border-radius: 2px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.turn.you .bubble {
+  background: rgba(109, 212, 200, 0.08);
+  border-left: 3px solid rgba(109, 212, 200, 0.5);
+}
+
+.turn.echo .bubble {
+  background: rgba(212, 180, 100, 0.06);
+  border-left: 3px solid rgba(212, 180, 100, 0.35);
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(184, 176, 160, 0.1);
+  align-items: flex-end;
+}
+
+.input-wrap {
+  flex: 1 1 12rem;
+  min-width: 0;
+}
+
+.input-wrap label {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--parchment-dim);
+  margin-bottom: 0.35rem;
+}
+
+.input-wrap textarea {
+  width: 100%;
+  min-height: 3.75rem;
+  resize: vertical;
+  padding: 0.65rem 0.85rem;
+  font-family: var(--font-body), Georgia, serif;
+  font-size: 1rem;
+  color: var(--parchment);
+  background: rgba(8, 6, 16, 0.65);
+  border: 1px solid rgba(109, 212, 200, 0.22);
+  border-radius: 2px;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.input-wrap textarea::placeholder {
+  color: rgba(232, 226, 212, 0.35);
+  font-style: italic;
+}
+
+.input-wrap textarea:focus {
+  border-color: rgba(109, 212, 200, 0.5);
+  box-shadow: 0 0 0 3px rgba(109, 212, 200, 0.1);
+}
+
+.reach-btn {
+  font-family: var(--font-display), serif;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+  padding: 0.85rem 1.35rem;
+  cursor: pointer;
+  color: var(--void);
+  background: linear-gradient(
+    175deg,
+    var(--teal-fire) 0%,
+    #4aac9f 55%,
+    #3d8f84 100%
+  );
+  border: none;
+  border-radius: 2px;
+  box-shadow:
+    0 0 24px var(--teal-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.reach-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 32px rgba(109, 212, 200, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.reach-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.reach-btn:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.error-banner {
+  margin-top: 0.85rem;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.88rem;
+  color: var(--parchment);
+  background: rgba(196, 92, 106, 0.15);
+  border: 1px solid rgba(196, 92, 106, 0.45);
+  border-radius: 2px;
+}
+
+.footer-whisper {
+  margin-top: 2.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: rgba(232, 226, 212, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spore {
+    animation: none !important;
+    opacity: 0.3 !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
