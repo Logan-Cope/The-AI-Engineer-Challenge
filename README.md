@@ -328,7 +328,7 @@ Try to leave gaps, too—questions unanswered, stories only half-remembered. Tha
 Are the vibes of your assistant aligned with your expectations? Why or why not?
 
 **Your Answer:**  
-<!-- Write your answer here -->
+Mostly yes. I wanted something that felt like a quiet hall - patient, a little literary, not peppy or “corporate wellness.” For the lore and inscription prompts it stayed in that register and gave me depth without sounding like generic ChatGPT. That matches what I built the UI to suggest. The tradeoff is consistency: on the earlier “summary” task it drifted into reflection instead of a tight summary, so the persona can sometimes override the format. For personal/creative use I’m happy with the vibes; for strict task types I’d tighten the prompt or the system instructions.
 
 ---
 
