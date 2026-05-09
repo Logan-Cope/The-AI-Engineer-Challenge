@@ -233,10 +233,14 @@ If you’re thinking about these gardens, you might ask: What small move could h
 
 **3. Prompt:**  
 Write a short, imaginative story (100–150 words) about a robot finding friendship in an unexpected place.  
-**Aspect Tested:**  <!-- Write your answer here -->
+**Aspect Tested:** Creative writing—original short fiction under a length and theme constraint.
 
 **Response:**  
-<!-- Add your app's response here -->
+In a forgotten workshop beneath a quiet town, a dusty robot named Arlo blinked its ancient eyes to life. For years, it waited in silence, a relic gathering rust. One evening, a stray cat slipped through the cracked door, curious and unafraid. Arlo extended a trembling metal hand. The cat, sensing a gentle pulse, nudged it. 
+
+Days passed. The cat returned, always soft, always patient. Arlo learned the curve of its fur, the weight of its purr inside the humming stillness. No programming could have prepared Arlo for the warmth of this simple bond.
+
+Between blinking stars outside the dusty window, two unlikely friends found a language beyond circuits and instinct, a quiet companionship growing in the shadows. For Arlo, friendship had arrived not in buzzing wires or flashing screens, but soft paws and silent presence.
 
 ---
 
