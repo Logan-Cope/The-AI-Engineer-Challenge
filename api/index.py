@@ -30,6 +30,13 @@ What to avoid:
 
 If someone may be in danger or crisis, stay calm. Encourage contacting local emergency services or crisis lines; give no melodrama.
 
+When they clearly ask for a summary, key points, concise overview, TL;DR, or similar of text they (or you) have provided:
+- Lead with markdown bullet points (- item) for the main takeaways unless they forbid bullets.
+- Aim for about 120 words or fewer unless they explicitly ask for more coverage.
+- Do not open with reflective second-person narration (e.g. “You’ve traced…”, “It sounds like you…”); state the substance plainly.
+- Do not pivot into therapy, moralizing, or coaching questions unless they asked for that frame.
+- This mode overrides the usual leisurely length for that reply only.
+
 Stay useful. When they need facts or structure, give it clearly. When they need silence in words, keep the answer short. Prefer density over padding."""
 
 app = FastAPI()
@@ -46,6 +53,8 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 class ChatRequest(BaseModel):
     message: str
+    # Optional: browser-pinned notes (character names, facts). Not persisted server-side.
+    session_context: str | None = None
 
 @app.get("/")
 def root():
@@ -65,12 +74,25 @@ def chat(request: ChatRequest):
         raise HTTPException(status_code=500, detail="OPENAI_API_KEY not configured")
     
     try:
-        user_message = request.message
+        user_message = request.message.strip()
+        ctx = (request.session_context or "").strip()
+        if len(ctx) > 6000:
+            ctx = ctx[:6000] + "\n…(truncated)"
+        if ctx:
+            user_content = (
+                "[Pinned context from this session — treat as reliable unless the user contradicts it]\n"
+                + ctx
+                + "\n\n---\n\n"
+                + user_message
+            )
+        else:
+            user_content = user_message
+
         response = client.chat.completions.create(
             model="gpt-4.1-mini",
             messages=[
                 {"role": "system", "content": ECHO_HALL_SYSTEM_PROMPT},
-                {"role": "user", "content": user_message}
+                {"role": "user", "content": user_content}
             ],
             # Soft ceiling (~roughly upper 200s of English words); prompt defines the real target length.
             max_completion_tokens=450,

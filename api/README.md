@@ -58,7 +58,8 @@ lsof -ti:8000 | xargs kill -9
 - **Request Body**:
 ```json
 {
-    "message": "string"
+    "message": "string",
+    "session_context": "optional; browser-pinned notes (names, facts). Omitted or null when unused."
 }
 ```
 - **Response**: JSON object with the AI's reply:

@@ -1,7 +1,11 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { KeyboardEvent, SVGAttributes } from "react";
+
+const STORAGE_MESSAGES = "echo-hall-messages-v1";
+const STORAGE_PIN = "echo-hall-pin-v1";
+const MAX_STORED_MESSAGES = 40;
 
 /**
  * Chat API origin.
@@ -21,12 +25,71 @@ type Msg = {
   text: string;
 };
 
+function isMsgArray(x: unknown): x is Msg[] {
+  if (!Array.isArray(x)) return false;
+  return x.every(
+    (row) =>
+      row &&
+      typeof row === "object" &&
+      (row as Msg).role !== undefined &&
+      (row as Msg).text !== undefined &&
+      ["you", "echo"].includes((row as Msg).role) &&
+      typeof (row as Msg).text === "string"
+  );
+}
+
 export default function EchoHall() {
   const [messages, setMessages] = useState<Msg[]>([]);
+  const [pinnedContext, setPinnedContext] = useState("");
   const [draft, setDraft] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const listEndRef = useRef<HTMLDivElement>(null);
+  /** After load-from-storage runs; avoids writing [] over saved thread on first paint. */
+  const storageReady = useRef(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const raw = localStorage.getItem(STORAGE_MESSAGES);
+      if (raw) {
+        const parsed = JSON.parse(raw) as unknown;
+        if (isMsgArray(parsed) && parsed.length > 0) {
+          setMessages(parsed.slice(-MAX_STORED_MESSAGES));
+        }
+      }
+      const pin = localStorage.getItem(STORAGE_PIN);
+      if (pin) setPinnedContext(pin);
+    } catch {
+      /* ignore corrupt storage */
+    }
+    queueMicrotask(() => {
+      storageReady.current = true;
+    });
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !storageReady.current) return;
+    try {
+      localStorage.setItem(
+        STORAGE_MESSAGES,
+        JSON.stringify(messages.slice(-MAX_STORED_MESSAGES))
+      );
+    } catch {
+      /* quota or private mode */
+    }
+  }, [messages]);
+
+  const persistPin = useCallback(() => {
+    if (typeof window === "undefined") return;
+    try {
+      const t = pinnedContext.trim();
+      if (t) localStorage.setItem(STORAGE_PIN, pinnedContext);
+      else localStorage.removeItem(STORAGE_PIN);
+    } catch {
+      /* ignore */
+    }
+  }, [pinnedContext]);
 
   const scrollToBottom = () => {
     queueMicrotask(() => listEndRef.current?.scrollIntoView({ behavior: "smooth" }));
@@ -42,13 +105,18 @@ export default function EchoHall() {
     scrollToBottom();
     setLoading(true);
 
+    const pin = pinnedContext.trim();
+
     try {
       const base = getApiBase();
       const url = base ? `${base}/api/chat` : "/api/chat";
       const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({
+          message,
+          session_context: pin.length > 0 ? pin : undefined,
+        }),
       });
 
       if (!res.ok) {
@@ -80,7 +148,19 @@ export default function EchoHall() {
     } finally {
       setLoading(false);
     }
-  }, [draft, loading]);
+  }, [draft, loading, pinnedContext]);
+
+  const clearConversation = useCallback(() => {
+    setMessages([]);
+    setError(null);
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.removeItem(STORAGE_MESSAGES);
+      } catch {
+        /* ignore */
+      }
+    }
+  }, []);
 
   const onKeyDown = (ev: KeyboardEvent<HTMLTextAreaElement>) => {
     if (ev.key === "Enter" && !ev.shiftKey) {
@@ -105,6 +185,30 @@ export default function EchoHall() {
               Say it plainly. The voice below reads for what is true, not for polish.
             </p>
           </div>
+        </div>
+
+        <details className="session-pin">
+          <summary>Pinned context (this device only)</summary>
+          <p className="session-pin-hint">
+            Names, facts, or tone notes persist in your browser and are sent with each message. They are not
+            stored on the server.
+          </p>
+          <textarea
+            className="session-pin-input"
+            value={pinnedContext}
+            onChange={(e) => setPinnedContext(e.target.value)}
+            onBlur={persistPin}
+            placeholder="e.g. The Forgotten Knight; Echo’s Whisper; formal second person…"
+            rows={3}
+            disabled={loading}
+            aria-label="Pinned session context"
+          />
+        </details>
+
+        <div className="messages-toolbar">
+          <button type="button" className="text-btn" onClick={clearConversation} disabled={loading || messages.length === 0}>
+            Clear conversation
+          </button>
         </div>
 
         <div className="messages" aria-live="polite" aria-busy={loading}>
@@ -164,7 +268,6 @@ function LanternGlyph({
       xmlns="http://www.w3.org/2000/svg"
       {...rest}
     >
-      {/* Abstract lantern emblem — solitude of light underground, original shapes */}
       <path
         d="M24 8L18 22h12L24 8z"
         fill="currentColor"

@@ -265,6 +265,74 @@ body::before {
   font-style: italic;
 }
 
+.session-pin {
+  margin-bottom: 0.65rem;
+  padding: 0.5rem 0.35rem;
+  border-bottom: 1px solid rgba(184, 176, 160, 0.08);
+}
+
+.session-pin summary {
+  font-family: var(--font-display), serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold-ember);
+  cursor: pointer;
+}
+
+.session-pin-hint {
+  margin: 0.45rem 0 0.4rem;
+  font-size: 0.78rem;
+  color: var(--parchment-dim);
+  line-height: 1.45;
+}
+
+.session-pin-input {
+  width: 100%;
+  min-height: 3rem;
+  resize: vertical;
+  padding: 0.55rem 0.75rem;
+  font-family: var(--font-body), Georgia, serif;
+  font-size: 0.92rem;
+  color: var(--parchment);
+  background: rgba(8, 6, 16, 0.55);
+  border: 1px solid rgba(212, 180, 100, 0.2);
+  border-radius: 2px;
+  outline: none;
+}
+
+.session-pin-input:focus {
+  border-color: rgba(109, 212, 200, 0.35);
+}
+
+.messages-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.35rem;
+}
+
+.text-btn {
+  font-family: var(--font-body), Georgia, serif;
+  font-size: 0.78rem;
+  color: var(--teal-dim);
+  background: none;
+  border: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  padding: 0.25rem 0;
+}
+
+.text-btn:hover:not(:disabled) {
+  color: var(--teal-fire);
+}
+
+.text-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+  text-decoration: none;
+}
+
 .messages {
   max-height: min(420px, 52vh);
   overflow-y: auto;

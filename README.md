@@ -376,7 +376,7 @@ If you want, I can guide you through how to do that step-by-step for the app you
 What are some limitations of your application?
 
 **Your Answer:**  
-<!-- Write your answer here -->
+The app still cannot reach **live data** (scores, weather, flights), **true memory** across devices or accounts (each deploy is stateless; the model sees only what we send in one request), or **tools** (calendar, email, GitHub). What we added is **lightweight**: browser-only pinned text and clearer instructions when someone asks for a **summary**—so limitations remain real, but two pain points from the vibe check are partially addressed without pretending we built a full stack.
 
 ---
 
@@ -392,10 +392,10 @@ Then rerun your vibe check and document:
 ---
 
 **Adjustments Made:**  
-<!-- Describe what you changed -->
+**(A) System prompt (`ECHO_HALL_SYSTEM_PROMPT` in `api/index.py`):** When the user clearly asks for a summary / key points / TL;DR, the model is instructed to use **markdown bullets**, stay roughly **under 120 words**, avoid reflective “you’ve traced…” openers, and skip coaching pivots unless asked. **(C) Session context:** `POST /api/chat` accepts optional **`session_context`**. The Next UI (`frontend/components/EchoHall.tsx`) adds a collapsible **Pinned context (this device only)** field plus **`localStorage`** persistence for the thread (last 40 turns) and the pin; messages survive refresh on the same browser. **Clear conversation** wipes the stored thread (not the pin).
 
 **Results:**  
-<!-- What improved? What didn’t? -->
+**Summary-style asks:** Re-run the Activity #1 garden paragraph with “provide a concise summary of the key points”—replies should skew **bullet-first and plain** instead of reflective essay tone (spot-check locally after deploy). **Memory gap:** With lore pinned (e.g. Forgotten Knight + weapon), follow-up questions in the **same browser** should **pick up names** the model no longer has to guess; it is **not** server-side or cross-device. **Unchanged:** live scores, calendar actions, and authenticated APIs still out of scope.
 
 ---
 
