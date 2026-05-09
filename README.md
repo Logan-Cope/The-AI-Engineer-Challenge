@@ -423,7 +423,9 @@ The chat API accepts optional `session_context` on each request. The UI adds a c
 
 **Result:**
 
-<!-- Paste your app’s full reply after you run the check below. -->
+Prompt: `In one sentence: what is the knight's weapon called?` (with the Forgotten Knight lore pinned and optional thread cleared.)
+
+The model replied: **The knight's weapon is called the Echo’s Whisper.**
 
 **How to verify**
 
@@ -435,7 +437,7 @@ The chat API accepts optional `session_context` on each request. The UI adds a c
 In one sentence: what is the knight's weapon called?
 ```
 
-4. Paste the model’s answer under **Result** for item **2** above.
+4. Compare the reply to the pin: it should name **Echo’s Whisper** without that name appearing only in the single-line question.
 
 ---
 
